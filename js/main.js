@@ -3,7 +3,7 @@
 // setting the variables
 var siteName = document.getElementById('siteName');
 var siteUrl = document.getElementById('siteUrl');
-var bookmarks;
+var bookmarks = [];
 
 
 // getting data form local storage.
@@ -12,23 +12,23 @@ if (localStorage.getItem('bookmarks') != null) {
   displaySites()
 }
 
-  // adding new item
-  function addBookmark() {
-    var site = {
-      name: siteName.value,
-      url: siteUrl.value,
-    }
-    // validate the data 
-    if (siteName.value && siteUrl.value != '') {
-      bookmarks.unshift(site)
-      localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
-      displaySites()
-      generateRandomColors()
-      clear()
-    } else {
-      document.getElementById("warning").style.display = 'block';
-    }
+// adding new item
+function addBookmark() {
+  var site = {
+    name: siteName.value,
+    url: siteUrl.value,
   }
+  // validate the data 
+  if (siteName.value && siteUrl.value != '') {
+    bookmarks.unshift(site)
+    localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+    displaySites()
+    generateRandomColors()
+    clear()
+  } else {
+    document.getElementById("warning").style.display = 'block';
+  }
+}
 
 // limit bookmark title
 function lengthChecker() {
