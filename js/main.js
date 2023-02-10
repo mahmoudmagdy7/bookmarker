@@ -20,7 +20,7 @@ function addBookmark() {
   }
   // validate the data 
   if (siteName.value && siteUrl.value != '') {
-    bookmarks.unshift(site)
+    bookmarks.push(site) // test the bug
     localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
     displaySites()
     generateRandomColors()
