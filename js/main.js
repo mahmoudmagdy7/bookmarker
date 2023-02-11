@@ -19,8 +19,8 @@ function addBookmark() {
     url: siteUrl.value,
   }
   // validate the data 
-  if (siteName.value && siteUrl.value != '') {
-    bookmarks.push(site) // test the bug
+  if (siteName.value && siteUrl.value != '' && siteName.value.length < 35) {
+    bookmarks.unshift(site) // fixing the bug
     localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
     displaySites()
     generateRandomColors()
@@ -54,11 +54,11 @@ function displaySites() {
   var table = '';
   for (var i = 0; i < bookmarks.length; i++) {
     table += `
-    <div id="bookmarkItem" class="bookmarkRow d-flex align-items-center justify-content-between m-3 bg-white py-2 px-5 rounded-1">
+    <div id="bookmarkItem" class="bookmarkRow d-flex align-items-center justify-content-between m-3 bg-white py-2 px-5 rounded-1 flex-wrap">
       <h3>${bookmarks[i].name}</h3>
       <div>
-        <button onclick="visit(${i})" class="btn btn-outline-primary px-4 mx-3">visit</button>
-        <button onclick="deleteSite(${i})" class="btn btn-outline-danger px-4">Delete</button>
+        <button onclick="visit(${i})" class="btn btn-outline-primary px-4 mx-3 m-1">visit</button>
+        <button onclick="deleteSite(${i})" class="btn btn-outline-danger px-4 m-1">Delete</button>
       </div>
     </div>
 `
